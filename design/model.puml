@@ -1,0 +1,49 @@
+@startuml
+
+enum Gender {
+    MALE
+    FEMALE
+}
+
+note top of Person: order in which person is added ???
+abstract class Person {
+    name: String
+    gender: Gender
+    father: Male
+    mother: Female
+}
+
+class Male {
+    wife: Female
+}
+Male .up.> Person
+
+class Female {
+    husband: Male
+    children: List<Person>
+}
+Female .up.> Person
+
+enum Relationship {
+    MATERNAL_AUNT
+    SIBLINGS
+}
+
+abstract class Command {
+    keyword: String
+}
+
+class AddChildCommand {
+    motherName: String
+    childName: String
+    childGender: Gender
+}
+AddChildCommand .up.> Command
+
+class GetRelationshipCommand {
+    name: String
+    relationship: Relationship
+}
+GetRelationshipCommand .up.> Command
+
+@enduml
